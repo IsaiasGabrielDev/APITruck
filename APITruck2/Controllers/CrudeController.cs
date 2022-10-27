@@ -33,7 +33,6 @@ namespace APITruck2.Controllers
         {           
             var modelo = await BaseContext.Modelos.AsTracking().FirstOrDefaultAsync(x => x.Nome.Contains(caminhao.NomeModelo.ToString()));
 
-            caminhao.Modelo = modelo;
             caminhao.AnoFabricacao = DateTime.Now.Year;
 
             if (caminhao.AnoModelo > caminhao.AnoFabricacao + 1 || caminhao.AnoModelo < caminhao.AnoFabricacao)

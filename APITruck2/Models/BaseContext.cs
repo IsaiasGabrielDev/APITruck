@@ -17,5 +17,14 @@ namespace APITruck2.Models
         public DbSet<Caminhao> Caminhoes { get; set; }
         public DbSet<Modelo> Modelos { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Caminhao>()
+            .Property(u => u.NomeModelo)
+            .HasConversion<string>()
+            .HasMaxLength(50);
+        }
+        
+
     }
 }

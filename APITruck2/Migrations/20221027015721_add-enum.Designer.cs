@@ -3,14 +3,16 @@ using APITruck2.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace APITruck2.Migrations
 {
     [DbContext(typeof(BaseContext))]
-    partial class BaseContextModelSnapshot : ModelSnapshot
+    [Migration("20221027015721_add-enum")]
+    partial class addenum
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,12 +33,12 @@ namespace APITruck2.Migrations
                     b.Property<int>("AnoModelo")
                         .HasColumnType("int");
 
-                    b.Property<string>("NomeModelo")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<int>("ModeloId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ModeloId");
 
                     b.ToTable("Caminhoes");
                 });
@@ -54,6 +56,17 @@ namespace APITruck2.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Modelos");
+                });
+
+            modelBuilder.Entity("APITruck2.Models.Caminhao", b =>
+                {
+                    b.HasOne("APITruck2.Models.Modelo", "Modelo")
+                        .WithMany()
+                        .HasForeignKey("ModeloId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Modelo");
                 });
 #pragma warning restore 612, 618
         }
