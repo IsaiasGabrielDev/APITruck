@@ -12,6 +12,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.Globalization;
+using System.Text.Json.Serialization;
 
 namespace APITruck2
 {
@@ -28,9 +32,14 @@ namespace APITruck2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            //services.AddControllers().AddNewtonsoftJson(options =>
-            //        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-            //    );
+
+            services.AddControllers()
+            .AddNewtonsoftJson(x =>
+            {
+                x.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                x.SerializerSettings.Converters.Add(new StringEnumConverter());
+            })
+            .AddJsonOptions(p => p.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
             services.AddCors();
             services.AddDbContext<BaseContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:Default"]));
