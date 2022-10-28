@@ -16,6 +16,9 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.Globalization;
 using System.Text.Json.Serialization;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
+using System.IO;
 
 namespace APITruck2
 {
@@ -47,6 +50,16 @@ namespace APITruck2
             {
                 options.MaxRequestBodySize = int.MaxValue;
             });
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Empresa X", Version = "v1", });
+
+                //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+
+                //c.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,13 +68,20 @@ namespace APITruck2
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+
+                app.UseSwaggerUI(c =>
+                {
+                    c.RoutePrefix = "";
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Truck v1");
+                });
             }
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            //app.UseAuthorization();
+            app.UseAuthorization();
 
             app.UseCors(option =>
             {
@@ -70,10 +90,14 @@ namespace APITruck2
                 option.AllowAnyOrigin();
             });
 
+            //app.UseMiddleware(typeof(ErrorMiddleware));
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
+            
         }
     }
 }

@@ -12,7 +12,7 @@ namespace APITruck2.Models
         
         public BaseContext(DbContextOptions<BaseContext> options) : base(options)
         {
-
+            Database.EnsureCreated();
         }
         public DbSet<Caminhao> Caminhoes { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
