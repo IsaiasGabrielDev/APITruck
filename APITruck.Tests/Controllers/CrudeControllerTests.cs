@@ -20,6 +20,7 @@ namespace APITruck.Tests.Controllers
             _caminhaoController = new CaminhaoController(new Mock<ICaminhaoRepository>().Object);
         }
 
+
         public List<Caminhao> CriarRepository()
         {
             List<Caminhao> caminhoes = new List<Caminhao>() { new Caminhao
@@ -40,6 +41,7 @@ namespace APITruck.Tests.Controllers
             return caminhoes;
         }
 
+        #region Gets
         [Fact]
         public void GetCaminhoes()
         {
@@ -55,6 +57,24 @@ namespace APITruck.Tests.Controllers
                 Assert.True(false);
             }
         }
+
+        [Fact]
+        public async Task GetCaminhaoId_IdNaoencontrado()
+        {
+            int id = 10000;
+
+            var fakeRepository = CriarRepository();
+            var mockRepository = new Mock<ICaminhaoRepository>();
+            mockRepository.Setup(x => x.BuscarId(id)).Returns(Task.FromResult(fakeRepository.FirstOrDefault(u => u.Id == id)));
+            _caminhaoController = new CaminhaoController(mockRepository.Object);
+
+            await Assert.ThrowsAsync<Exception>(async () =>
+            await _caminhaoController.GetCaminhaoId(id));
+        }
+
+        #endregion
+
+        #region Insert
 
         [Fact]
         public void Insert_CaminhaoValido()
@@ -119,23 +139,12 @@ namespace APITruck.Tests.Controllers
             }));
         }
 
-        [Fact]
-        public async Task GetCaminhaoId_IdNaoencontrado()
-        {
-            int id = 10000;
+        #endregion
 
-            var fakeRepository = CriarRepository();
-            var mockRepository = new Mock<ICaminhaoRepository>();
-            mockRepository.Setup(x => x.BuscarId(id)).Returns(Task.FromResult(fakeRepository.FirstOrDefault(u => u.Id == id)));
-            _caminhaoController = new CaminhaoController(mockRepository.Object);
-
-            await Assert.ThrowsAsync<Exception>(async () =>
-            await _caminhaoController.GetCaminhaoId(id));
-        }
-
+        #region Delete
         [Fact]
         public async Task Delete_IdZeroNulo()
-        {           
+        {
             await Assert.ThrowsAsync<Exception>(async () =>
             await _caminhaoController.Delete(0));
         }
@@ -152,5 +161,8 @@ namespace APITruck.Tests.Controllers
                 NomeModelo = ModeloNome.FM
             }));
         }
+        #endregion
+
+
     }
 }
