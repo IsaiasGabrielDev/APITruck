@@ -46,6 +46,7 @@ namespace APITruck
 
             services.AddCors();
             services.AddDbContext<BaseContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:Default"]));
+            services.AddScoped<ICaminhaoRepository, CaminhaoRepository>();
             services.Configure<IISServerOptions>(options =>
             {
                 options.MaxRequestBodySize = int.MaxValue;

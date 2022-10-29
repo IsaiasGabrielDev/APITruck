@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace APITruck.Models
 {  
-    public abstract class CaminhaoRepository : ICaminhaoRepository
+    public class CaminhaoRepository : ICaminhaoRepository
     {
         private readonly BaseContext _context;
         public CaminhaoRepository(BaseContext baseContext)

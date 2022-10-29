@@ -10,11 +10,11 @@ namespace APITruck.Tests.Controllers
 {
     public class CrudeControllerTests
     {
-        private CrudeController crudeController;
+        private CaminhaoController crudeController;
 
         public CrudeControllerTests()
         {
-            crudeController = new CrudeController(new Mock<CaminhaoRepository>().Object);
+            crudeController = new CaminhaoController(new Mock<CaminhaoRepository>().Object);
         }
 
         [Fact]

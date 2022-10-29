@@ -11,34 +11,34 @@ namespace APITruck.Controllers
 {
     [ApiController]
     [Route("api/{controller}")]
-    public class CrudeController : ControllerBase
+    public class CaminhaoController : ControllerBase
     {
 
-        public CaminhaoRepository CaminhaoRepository { get; set; }
+        private ICaminhaoRepository _caminhaoRepository { get; set; }
 
-        public CrudeController(CaminhaoRepository caminhaoRepository)
+        public CaminhaoController(ICaminhaoRepository caminhaoRepository)
         {
-            CaminhaoRepository = caminhaoRepository;
+            _caminhaoRepository = caminhaoRepository;
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCaminhoes(int id)
         {
-            var caminhao = await CaminhaoRepository.BuscarId(id);
+            var caminhao = await _caminhaoRepository.BuscarId(id);
             return Ok(caminhao);
         }
 
         [HttpGet("ListarCaminhoes")]
         public async Task<IActionResult> GetCaminhoes()
         {
-            var caminhoes = await CaminhaoRepository.Listar();
+            var caminhoes = await _caminhaoRepository.Listar();
             return Ok(caminhoes);
         }
 
         [HttpPost]
         public async Task<IActionResult> Insert([FromBody] Caminhao caminhao)
         {
-            var caminhaodb = await CaminhaoRepository.Inserir(caminhao);
+            var caminhaodb = await _caminhaoRepository.Inserir(caminhao);
 
             return new ObjectResult(caminhaodb) { StatusCode = StatusCodes.Status201Created };
         }
@@ -46,14 +46,14 @@ namespace APITruck.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put([FromRoute] int id, [FromBody] Caminhao caminhao)
         {
-            var caminhaodb = await CaminhaoRepository.Atualizar(id, caminhao);
+            var caminhaodb = await _caminhaoRepository.Atualizar(id, caminhao);
             return new ObjectResult(caminhaodb) { StatusCode = StatusCodes.Status200OK };
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await CaminhaoRepository.Deletar(id);
+            await _caminhaoRepository.Deletar(id);
             return Ok();
         }
     }
