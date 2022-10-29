@@ -14,7 +14,7 @@ namespace APITruck.Tests.Controllers
 
         public CrudeControllerTests()
         {
-            crudeController = new CrudeController(new Mock<BaseContext>().Object);
+            crudeController = new CrudeController(new Mock<CaminhaoRepository>().Object);
         }
 
         [Fact]

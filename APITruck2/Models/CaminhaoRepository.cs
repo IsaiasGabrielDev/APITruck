@@ -6,17 +6,7 @@ using APITruck.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace APITruck.Models
-{
-    public interface ICaminhaoRepository
-    {
-        Task<Caminhao> Inserir(Caminhao obj);
-        Task Deletar(int id);
-        Task<Caminhao> BuscarId(int id);
-        Task<Caminhao> Atualizar(int id, Caminhao obj);
-        Task<List<Caminhao>> Listar();
-
-    }
-
+{  
     public abstract class CaminhaoRepository : ICaminhaoRepository
     {
         private readonly BaseContext _context;
