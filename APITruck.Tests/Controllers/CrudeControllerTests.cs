@@ -148,6 +148,7 @@ namespace APITruck.Tests.Controllers
             await Assert.ThrowsAsync<Exception>(async () =>
             await _caminhaoController.Delete(0));
         }
+        #endregion
 
         [Fact]
         public async Task Atualizar_IdZeroNulo()
@@ -160,9 +161,7 @@ namespace APITruck.Tests.Controllers
                 AnoModelo = 2023,
                 NomeModelo = ModeloNome.FM
             }));
-        }
-        #endregion
-
+        }     
 
     }
 }
