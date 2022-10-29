@@ -24,11 +24,11 @@ namespace APITruck.Models
                 throw new Exception($"Id do caminhão não localizado");
             }
 
-            if (obj.AnoModelo > objdb.AnoFabricacao + 1 || obj.AnoModelo < objdb.AnoFabricacao)
+            if(obj.AnoFabricacao < objdb.AnoFabricacao)
             {
-                throw new Exception($"Ano do modelo menor que o ano da Fabricação ou maior que um ano mais dela.");
+                throw new Exception($"Não é possivel atualizar com um ano menor do que o já cadastrado.");
             }
-
+         
             objdb.AnoFabricacao = obj.AnoFabricacao;
             objdb.AnoModelo = obj.AnoModelo;
             objdb.NomeModelo = obj.NomeModelo;
@@ -40,32 +40,30 @@ namespace APITruck.Models
 
         public async Task<Caminhao> BuscarId(int id)
         {
-            var caminhao = await _context.Caminhoes.AsTracking().FirstOrDefaultAsync(x => x.Id == id);
-            return caminhao;
+            var obj = await _context.Caminhoes.AsTracking().FirstOrDefaultAsync(x => x.Id == id);
+            if (obj == null)
+            {
+                throw new Exception("Caminhao não localizado");
+            }
+            return obj;
         }
 
         public async Task Deletar(int id)
         {
-            var obj = await BuscarId(id); 
-            if(obj == null)
+            var obj = await BuscarId(id);
+
+            if (obj == null)
             {
                 throw new Exception("Caminhao não localizado");
             }
+
             _context.Caminhoes.Remove(obj);
 
             await Save();
         }
 
         public async Task<Caminhao> Inserir(Caminhao obj)
-        {
-            obj.Id = 0;
-            obj.AnoFabricacao = DateTime.Now.Year;
-
-            if (obj.AnoModelo > obj.AnoFabricacao + 1 || obj.AnoModelo < obj.AnoFabricacao)
-            {
-                throw new Exception($"Ano do modelo menor que o ano atual ou maior que {DateTime.Now.Year + 1}");
-            }
-
+        {          
             _context.Caminhoes.Add(obj);
 
             await Save();
