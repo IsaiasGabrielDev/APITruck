@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace APITruck2.Models
+namespace APITruck.Models
 {
     [Table("Caminhoes")]
     public class Caminhao

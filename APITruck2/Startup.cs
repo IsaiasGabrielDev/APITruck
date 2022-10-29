@@ -1,4 +1,4 @@
-using APITruck2.Models;
+using APITruck.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -20,7 +20,7 @@ using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.IO;
 
-namespace APITruck2
+namespace APITruck
 {
     public class Startup
     {

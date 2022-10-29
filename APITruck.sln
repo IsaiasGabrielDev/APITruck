@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{EDA04CED-7E8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{104FE00A-4545-46F1-ACEB-6734EA0584E0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APITruck.Tests", "APITruck.Tests\APITruck.Tests.csproj", "{37233E36-3957-4E2D-8F6B-12B7774F73A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,12 +21,17 @@ Global
 		{7798CE2C-B3D2-45A4-92A2-C6DEA61DD8FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7798CE2C-B3D2-45A4-92A2-C6DEA61DD8FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7798CE2C-B3D2-45A4-92A2-C6DEA61DD8FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37233E36-3957-4E2D-8F6B-12B7774F73A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37233E36-3957-4E2D-8F6B-12B7774F73A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37233E36-3957-4E2D-8F6B-12B7774F73A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37233E36-3957-4E2D-8F6B-12B7774F73A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7798CE2C-B3D2-45A4-92A2-C6DEA61DD8FB} = {EDA04CED-7E8D-4345-B634-2A2AEF987BB6}
+		{37233E36-3957-4E2D-8F6B-12B7774F73A9} = {104FE00A-4545-46F1-ACEB-6734EA0584E0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0FB8720D-B377-48D7-80E9-87EF35F2BB39}

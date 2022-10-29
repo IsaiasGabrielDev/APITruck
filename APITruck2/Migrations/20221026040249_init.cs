@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace APITruck2.Migrations
+namespace APITruck.Migrations
 {
     public partial class init : Migration
     {
