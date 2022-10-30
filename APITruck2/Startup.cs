@@ -54,7 +54,16 @@ namespace APITruck
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Empresa X", Version = "v1", });
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "APITruck",
+                    Version = "v1",
+                    Description = " **Para funcionamento da API, altere a string de conexão válida em (appsettings.json), propriedade (ConnectionStrings), em seguida abra o console do gerenciador de pacotes e digite (Update-Database)** ",
+                });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
 
                 //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
@@ -98,7 +107,7 @@ namespace APITruck
                 endpoints.MapControllers();
             });
 
-            
+
         }
     }
 }

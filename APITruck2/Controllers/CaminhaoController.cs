@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace APITruck.Controllers
 {
     [ApiController]
-    [Route("api/{controller}")]
+    [Route("api/Caminhao")]
     public class CaminhaoController : ControllerBase
     {
 
@@ -21,6 +21,10 @@ namespace APITruck.Controllers
             _caminhaoRepository = caminhaoRepository;
         }
 
+        /// <summary>
+        /// Retorna o que corresponde ao Id
+        /// </summary>
+        /// <returns>Caminhao pelo Id</returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCaminhaoId(int id)
         {
@@ -39,6 +43,9 @@ namespace APITruck.Controllers
             return Ok(caminhao);
         }
 
+        /// <summary>
+        /// Retorna a lista completa
+        /// </summary>
         [HttpGet]
         public async Task<IActionResult> GetCaminhoes()
         {
@@ -46,6 +53,9 @@ namespace APITruck.Controllers
             return Ok(caminhoes);
         }
 
+        /// <summary>
+        /// Insere
+        /// </summary>
         [HttpPost]
         public async Task<IActionResult> Insert([FromBody] Caminhao caminhao)
         {
@@ -70,6 +80,11 @@ namespace APITruck.Controllers
             return new ObjectResult(caminhaodb) { StatusCode = StatusCodes.Status201Created };
         }
 
+        /// <summary>
+        /// Atualizar o Caminhão através do Id
+        /// </summary>        
+        /// <param name="id"></param>
+        /// <param name="caminhao"></param>
         [HttpPut("{id}")]
         public async Task<IActionResult> Atualizar([FromRoute] int id, [FromBody] Caminhao caminhao)
         {
@@ -87,6 +102,10 @@ namespace APITruck.Controllers
             return new ObjectResult(caminhaodb) { StatusCode = StatusCodes.Status200OK };
         }
 
+        /// <summary>
+        /// Deleta o que corresponde ao Id
+        /// <param name="id"></param>
+        /// </summary>
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
