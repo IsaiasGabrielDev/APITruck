@@ -81,7 +81,7 @@ namespace APITruck.Controllers
         }
 
         /// <summary>
-        /// Atualizar o Caminhão através do Id
+        /// Atualiza o Caminhão através do Id
         /// </summary>        
         /// <param name="id"></param>
         /// <param name="caminhao"></param>
