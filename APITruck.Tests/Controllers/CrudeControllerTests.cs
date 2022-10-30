@@ -43,10 +43,33 @@ namespace APITruck.Tests.Controllers
 
         #region Gets
         [Fact]
-        public void GetCaminhoes()
+        public async Task GetCaminhoesAsync()
         {
-            var resp = _caminhaoController.GetCaminhoes();
-            var result = resp.Result as ObjectResult;
+            var resp = await _caminhaoController.GetCaminhoes();
+            var result = resp as ObjectResult;
+
+            if (result.StatusCode == 200)
+            {
+                Assert.True(true);
+            }
+            else
+            {
+                Assert.True(false);
+            }
+        }
+
+        [Fact]
+        public async Task GetCaminhaoId_Idencontrado()
+        {
+            int id = 1;
+
+            var fakeRepository = CriarRepository();
+            var mockRepository = new Mock<ICaminhaoRepository>();
+            mockRepository.Setup(x => x.BuscarId(id)).Returns(Task.FromResult(fakeRepository.FirstOrDefault(u => u.Id == id)));
+            _caminhaoController = new CaminhaoController(mockRepository.Object);
+          
+            var resp = await _caminhaoController.GetCaminhaoId(id);
+            var result = resp as ObjectResult;
 
             if (result.StatusCode == 200)
             {
@@ -77,9 +100,9 @@ namespace APITruck.Tests.Controllers
         #region Insert
 
         [Fact]
-        public void Insert_CaminhaoValido()
+        public async Task Insert_CaminhaoValidoAsync()
         {
-            var resp = _caminhaoController.Insert(new Caminhao
+            var resp = await _caminhaoController.Insert(new Caminhao
             {
                 Id = 0,
                 AnoFabricacao = 2022,
@@ -88,7 +111,7 @@ namespace APITruck.Tests.Controllers
             });
 
             //Assert
-            var result = resp.Result as ObjectResult;
+            var result = resp as ObjectResult;
 
             if (result.StatusCode == 201)
             {

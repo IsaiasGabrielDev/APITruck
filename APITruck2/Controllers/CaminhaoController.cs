@@ -104,7 +104,6 @@ namespace APITruck.Controllers
 
         /// <summary>
         /// Deleta o que corresponde ao Id
-        /// <param name="id"></param>
         /// </summary>
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)

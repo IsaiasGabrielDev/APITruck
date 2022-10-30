@@ -30,7 +30,6 @@
         <member name="M:APITruck.Controllers.CaminhaoController.Delete(System.Int32)">
             <summary>
             Deleta o que corresponde ao Id
-            <param name="id"></param>
             </summary>
         </member>
     </members>
