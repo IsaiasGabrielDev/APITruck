@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APITruck.Migrations
 {
     [DbContext(typeof(BaseContext))]
-    [Migration("20221026040249_init")]
-    partial class init
+    [Migration("20221027023106_initdsbagdabsd")]
+    partial class initdsbagdabsd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,12 +33,12 @@ namespace APITruck.Migrations
                     b.Property<int>("AnoModelo")
                         .HasColumnType("int");
 
-                    b.Property<int>("ModeloId")
-                        .HasColumnType("int");
+                    b.Property<string>("NomeModelo")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ModeloId");
 
                     b.ToTable("Caminhoes");
                 });
@@ -56,17 +56,6 @@ namespace APITruck.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Modelos");
-                });
-
-            modelBuilder.Entity("APITruck2.Models.Caminhao", b =>
-                {
-                    b.HasOne("APITruck2.Models.Modelo", "Modelo")
-                        .WithMany()
-                        .HasForeignKey("ModeloId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Modelo");
                 });
 #pragma warning restore 612, 618
         }

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APITruck.Migrations
 {
     [DbContext(typeof(BaseContext))]
-    [Migration("20221026040249_init")]
-    partial class init
+    [Migration("20221027015721_add-enum")]
+    partial class addenum
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

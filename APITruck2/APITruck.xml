@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>APITruck</name>
+    </assembly>
+    <members>
+        <member name="M:APITruck.Controllers.CaminhaoController.GetCaminhaoId(System.Int32)">
+            <summary>
+            Retorna o que corresponde ao Id
+            </summary>
+            <returns>Caminhao pelo Id</returns>
+        </member>
+        <member name="M:APITruck.Controllers.CaminhaoController.GetCaminhoes">
+            <summary>
+            Retorna a lista completa
+            </summary>
+        </member>
+        <member name="M:APITruck.Controllers.CaminhaoController.Insert(APITruck.Models.Caminhao)">
+            <summary>
+            Insere
+            </summary>
+        </member>
+        <member name="M:APITruck.Controllers.CaminhaoController.Atualizar(System.Int32,APITruck.Models.Caminhao)">
+            <summary>
+            Atualizar o Caminhão através do Id
+            </summary>        
+            <param name="id"></param>
+            <param name="caminhao"></param>
+        </member>
+        <member name="M:APITruck.Controllers.CaminhaoController.Delete(System.Int32)">
+            <summary>
+            Deleta o que corresponde ao Id
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APITruck.Migrations
 {
     [DbContext(typeof(BaseContext))]
-    [Migration("20221026040249_init")]
-    partial class init
+    [Migration("20221027030337_parseenum")]
+    partial class parseenum
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,40 +33,13 @@ namespace APITruck.Migrations
                     b.Property<int>("AnoModelo")
                         .HasColumnType("int");
 
-                    b.Property<int>("ModeloId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ModeloId");
-
-                    b.ToTable("Caminhoes");
-                });
-
-            modelBuilder.Entity("APITruck2.Models.Modelo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Nome")
+                    b.Property<string>("NomeModelo")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Modelos");
-                });
-
-            modelBuilder.Entity("APITruck2.Models.Caminhao", b =>
-                {
-                    b.HasOne("APITruck2.Models.Modelo", "Modelo")
-                        .WithMany()
-                        .HasForeignKey("ModeloId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Modelo");
+                    b.ToTable("Caminhoes");
                 });
 #pragma warning restore 612, 618
         }
